@@ -1,0 +1,775 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bms-gray-900: #101828;
+  --bms-gray-800: #182230;
+  --bms-gray-700: #344054;
+  --bms-gray-600: #475467;
+  --bms-gray-500: #667085;
+  --bms-gray-400: #98A2B3;
+  --bms-gray-300: #D0D5DD;
+  --bms-gray-200: #E4E7EC;
+  --bms-gray-100: #F2F4F7;
+  --bms-gray-50: #F9FAFB;
+
+  --bms-primary-900: #0F2542;
+  --bms-primary-800: #213E66;
+  --bms-primary-700: #1E4C8A;
+  --bms-primary-600: #1870B5;
+  --bms-primary-500: #5873A3;
+  --bms-primary-400: #98A2B3;
+  --bms-primary-300: #D0D5DD;
+  --bms-primary-200: #DCEBFF;
+  --bms-primary-100: #EBF4FF;
+
+  --error-100: #FEE4E2;
+  --error-300: #FDA29B;
+  --error-500: #F04438;
+  --error-600: #D92D20;
+
+  --success-100: #E6F4D7;
+  --success-300: #A9D978;
+  --success-500: #4F7A21;
+
+  --warning-100: #FEF0C7;
+  --warning-300: #FEC84B;
+  --warning-500: #DC6803;
+
+  --orange-100: #FDEAD7;
+  --orange-300: #F7B27A;
+  --orange-500: #EC8046;
+
+}
+:root {
+  --font-inter: 'Inter', sans-serif;
+  --font-figtree: "Figtree", sans-serif;
+}
+html{
+  /* font-family: var(--font-inter), sans-serif; */
+  font-family: var(--font-figtree), sans-serif;
+  scroll-behavior: smooth;
+  overscroll-behavior: auto;
+}
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  /* font-family: var(--font-inter), sans-serif; */
+  font-family: var(--font-figtree), sans-serif;
+  background-color: var(--bms-gray-100);
+  overscroll-behavior: auto;
+}
+.root-layout{
+  @apply flex flex-col h-dvh max-w-[968px] mx-auto bg-white;
+}
+.bms-container{
+  @apply max-w-[1360px] mx-auto px-0;
+}
+.header-back-btn .btnText{
+  @apply hidden md:inline-block;
+}
+.main-container {
+  @apply flex w-full h-full flex-1;
+}
+.left-section-wrpr {
+  @apply relative max-h-full h-full flex-1 w-full flex flex-col p-0;
+  /* &.no_padding{
+    @apply p-0
+  } */
+}
+.scrollable-section{
+  @apply h-[calc(100%_-_156px)] w-full md:w-[calc(100%_+_10px)] flex items-start justify-center overflow-auto pt-8 md:pt-6 pb-1;
+  overscroll-behavior: contain; 
+  &.appointment-overview-page{
+    @apply h-full;
+    .left-section-inner{
+      @apply gap-6;
+    }
+  }
+}
+.left-section-inner{
+  @apply flex flex-col gap-8 md:gap-12 flex-1 max-w-[688px];
+  &.no_padding{
+    @apply pt-0;
+  }
+  &.slot-section{
+    @apply max-w-full p-2 md:pr-5;
+  }
+}
+.right-section-wrpr {
+  @apply lg:flex hidden py-8 px-6 max-w-[520px] w-[40%] h-full max-h-full; 
+}
+.right-img-wrpr{
+  @apply w-full h-full relative rounded-lg overflow-hidden;
+}
+.text-link{
+  @apply text-bms_primary_800 hover:text-bms_primary_600 text-base font-medium underline underline-offset-2;
+  text-decoration-skip-ink: none;
+}
+.bmsLabel{
+  @apply text-bms_gray_800 text-base;
+}
+.bmsLabel_sm{
+  @apply text-bms_gray_800 text-sm md:text-base font-medium;
+}
+.bmsSubLabel{
+  @apply text-sm/4 text-bms_gray_500
+}
+/****************   Button Styles      **********************/
+.bmsBtn {
+  @apply text-sm sm:text-base font-medium  px-4 inline-flex items-center justify-center gap-2 rounded-lg cursor-pointer focus:outline-none focus-within:outline-none focus:border-none transition;
+  &.md{
+    @apply h-11;
+  }
+  &.lg{
+    @apply h-14;
+  }
+  &.primaryBtn {
+    @apply text-white border-0 bg-bms_primary_800 hover:bg-bms_primary_900 disabled:bg-bms_gray_100 disabled:text-bms_gray_400 disabled:cursor-not-allowed;
+  }
+  &.secondaryBtn {
+    @apply text-bms_primary_800 border border-bms_primary_800 bg-bms_primary_100 hover:bg-bms_primary_200 disabled:bg-bms_gray_100 disabled:text-bms_gray_400 disabled:border-0 disabled:cursor-not-allowed;
+  }
+  &.tertiaryBtn {
+    @apply text-bms_primary_800 border-2 border-bms_primary_800 bg-white hover:bg-bms_primary_100 disabled:bg-bms_gray_100 disabled:text-bms_gray_400 disabled:border-bms_gray_400 disabled:cursor-not-allowed;
+  }
+  &.textBtn {
+    @apply gap-2 bg-none border-0 text-bms_primary_800 text-base font-medium py-1 px-2.5 underline underline-offset-2 justify-start hover:text-bms_primary_900;
+    text-decoration-skip-ink :none;
+    &.not-underline{
+      @apply no-underline;
+    }
+    &.editBtn.selected{
+      @apply text-bms_primary_800; 
+    } 
+    &.cancelApptBtn {
+      @apply justify-center no-underline;
+    } 
+  }
+  &.whiteBtn {
+    @apply text-bms_primary_800 border border-white bg-white;
+  }
+  &.outlineBtn {
+    @apply text-white border border-white bg-transparent;
+  }
+  &.selectBtn{
+    @apply justify-start;
+  }
+}
+/****************   Button Styles      **********************/
+
+/*****************    Tabs Styles       **********************/
+
+.tabs-wrpr{
+  @apply inline-flex gap-0 items-center border border-solid border-bms_primary_100 bg-bms_primary_100 rounded-md;
+}
+.tab-btn{
+  @apply rounded-md px-2.5 py-1 flex items-center justify-center bg-transparent text-bms_primary_800 text-sm font-medium text-center;
+  &.selected{
+    @apply bg-bms_primary_800 text-white;
+  }
+}
+
+/*****************        Tabs Styles       **********************/
+/********************         calender styles            **********************/
+.bms-calender {
+  @apply py-4 px-2 md:p-4 mx-auto w-fit -mb-3 shadow-[0_1px_4px_0_rgba(0,0,0,0.16)] rounded-lg;
+  .rdp-root {
+    @apply w-full !important;
+  }
+}
+.error-msg {
+    @apply flex gap-1 text-sm font-normal;
+    color: rgba(217, 45, 32, 1);
+
+  }
+.cal-months {
+  @apply relative;
+}
+.cal-nav {
+  @apply absolute top-0 w-full flex items-center justify-between;
+  .rdp-button_previous,
+  .rdp-button_next {
+    @apply text-bms_primary_800 bg-bms_primary_100 border-0 rounded-lg flex items-center justify-center w-[38px] h-[38px] hover:bg-bms_primary_200 disabled:bg-transparent disabled:cursor-not-allowed disabled:text-bms_gray_500;
+  }
+}
+.rdp-month_caption{
+  @apply h-[38px] flex items-center justify-center;
+}
+.rdp-month_caption{
+  @apply h-[38px] flex items-center justify-center;
+}
+.cal-month {
+  @apply text-center w-full;
+}
+.cal-caption-label {
+  @apply inline-block text-center w-fit text-base font-normal relative z-10 text-bms_gray_800;
+}
+.rdp-month_grid.month-grid {
+  @apply grid gap-4 grid-cols-4 mt-3;
+}
+.month-button {
+  @apply text-sm font-bold transition;
+}
+.cal-month table.rdp-month_grid {
+  @apply mt-2 border-separate border-none border-spacing-x-0 border-spacing-y-1 w-full;
+}
+.cal-day .rdp-day_button {
+  @apply w-11 h-11 rounded-lg text-sm md:text-base text-bms_gray_800 bg-transparent hover:bg-bms_primary_200;
+}
+.cal-day.cal-day-outside{
+  @apply opacity-0;
+}
+.cal-day.cal-day-outside button {
+  @apply opacity-70 pointer-events-none;
+}
+.rdp-weekday {
+  @apply p-1.5 text-xs font-medium text-bms_gray_800;
+}
+.cal-day {
+  @apply py-1 px-1;
+}
+@media screen and (max-width:440px) {
+  .cal-day .rdp-day_button  {
+    @apply w-7 h-7;
+  }
+  .cal-day {
+    @apply px-1;
+  }
+}
+  /*   available slots date  */
+.cal-day.rdp-available {
+  @apply relative rounded-full h-9 w-9;
+  .rdp-day_button {
+    @apply text-bms_success_500 bg-bms_success_100;
+  }
+}
+  /*   near location available slots date  */
+.cal-day.rdp-near-location {
+  @apply relative rounded-full h-9 w-9;
+  .rdp-day_button {
+    @apply text-bms_warning_500 bg-bms_orange_100;
+  }
+}
+.cal-day.rdp-selected {
+  @apply relative rounded-full h-9 w-9;
+  .rdp-day_button {
+    @apply text-white bg-bms_success_500;
+  }
+}
+
+
+.cal-day.cal-disable .rdp-day_button {
+  @apply cursor-not-allowed bg-bms_gray_50 text-bms_gray_400;
+}
+.cal-day.cal-disable.cal-weekends .rdp-day_button {
+  @apply cursor-not-allowed bg-bms_gray_200 text-bms_gray_300;
+}
+.calendar-dropdown-content {
+  @apply w-[314px] bg-white;
+  .calendar-dropdown {
+    @apply w-fit !important;
+    .cal-day {
+      @apply p-0.5;
+    }
+  }
+}
+.calender-markers{
+  @apply flex items-center justify-center gap-0 sm:gap-4;
+}
+.marker-item{
+  @apply flex items-center gap-2 px-2 text-sm font-medium;
+}
+.marker-icon{
+  @apply rounded-full w-3 h-3 border border-solid;
+  &.sister{
+    @apply bg-bms_orange_100 border-bms_warning_500;
+  }
+  &.primary{
+    @apply bg-bms_success_100 border-bms_success_500;
+  }
+}
+
+/**************************      Calender styles        ******************************/
+
+.left-section-content {
+  @apply flex flex-col gap-4 overflow-auto h-full;
+}
+.footer {
+  @apply flex gap-4 px-4 md:px-6 pb-0 pt-4 md:py-4 w-full;
+}
+.slots-card-wrpr{
+  @apply gap-6 flex flex-col px-0 md:px-2;
+}
+
+/*************************       INPUT STYLE          **********************************/
+.input-placeholder {
+  @apply text-bms_gray_400 text-sm font-normal text-ellipsis overflow-hidden items-center;
+}
+.marker-item{
+  @apply flex items-center gap-2 px-2 text-sm font-medium;
+}
+.bms-input-block.f-block {
+  @apply flex flex-col gap-1.5;
+}
+.bms-input-block .f-wrpr {
+  @apply flex gap-1.5 items-center justify-center px-4 bg-bms_gray_50 rounded-lg overflow-hidden shadow-[0_2px_4px_0_rgba(0,0,0,0.25)] transition;
+}
+.bms-input-block .f-in {
+  @apply  w-full text-sm font-sans font-normal bg-bms_gray_50 text-bms_gray_800 h-[42px] focus:border-none focus:outline-none focus:shadow-none focus-visible:border-none focus-visible:outline-none focus-visible:shadow-none placeholder:text-bms_gray_500 disabled:text-[rgba(102,112,133,0.5)] disabled:bg-bms_gray_50 disabled:cursor-not-allowed;
+}
+.bms-input-block .f-in:-webkit-autofill {
+    -webkit-background-clip: text;
+}
+.bms-input-block .f-wrpr:has(.f-in:disabled) {
+  @apply bg-bms_gray_50 shadow-[0_1px_4px_0_rgba(0,0,0,0.16)];
+}
+.bms-input-block .f-wrpr:has(.f-in:focus) {
+  @apply border-bms_primary_800;
+}
+.bms-input-block .f-in[type="number"]::-webkit-outer-spin-button,
+.bms-input-block .f-in[type="number"]::-webkit-inner-spin-button {
+  @apply m-0;
+  -webkit-appearance: none;
+}
+.bms-input-block .f-in[type="number"] {
+  -moz-appearance: textfield;
+}
+.bms-input-block .f-icon {
+  @apply w-6 h-6 flex items-center justify-center;
+}
+.bms-input-block .f-wrpr.left-icon {
+  @apply pl-3.5;
+}
+.bms-input-block .f-wrpr.right-icon {
+  @apply pr-3.5;
+}
+.bms-input-block .f-wrpr.left-icon .f-in {
+  @apply pl-0;
+}
+.bms-input-block .f-wrpr.right-icon .f-in {
+  @apply pr-0;
+}
+
+/*************************       INPUT STYLE          **********************************/
+/*************************       SELECT STYLE          **********************************/
+.uvc-select-wrpr{
+  @apply relative flex flex-col gap-1.5;
+}
+.select-btn {
+  @apply text-sm relative flex items-center justify-between whitespace-nowrap px-4 text-bms_primary_800 bg-bms_gray_50 rounded-lg h-11 min-h-11 overflow-hidden cursor-pointer transition focus:outline-none focus:ring-0 disabled:cursor-not-allowed disabled:bg-bms_gray_200 shadow-[0_2px_4px_0_rgba(0,0,0,0.25)];
+}
+.selected-value{
+  @apply text-bms_primary_800;
+}
+.select-content {
+  @apply relative z-[99999] max-h-52 min-w-[8rem] w-[var(--radix-popover-trigger-width)] max-w-[var(--radix-popover-trigger-width)] overflow-hidden rounded-md border bg-white text-black shadow-md p-0;
+  animation-duration: 0.6s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+.select-content[data-side="bottom"] {
+  animation-name: slideDown;
+}
+.uvc-select-icon{
+  @apply text-bms_gray_400
+}
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.select-item {
+  @apply relative flex items-center w-full cursor-pointer text-bms_gray_800 rounded p-2 text-xs sm:text-sm outline-none transition hover:cursor-pointer hover:bg-bms_primary_200;
+}
+.select-item.selected {
+  @apply bg-bms_primary_600 text-white;
+}
+/*************************       SELECT STYLE          **********************************/
+/*************************       RADIO STYLE          **********************************/
+.radio-group-block .f-wrpr {
+  @apply bg-transparent border-none;
+}
+.radio-group-block{
+  @apply flex flex-col gap-1.5
+}
+.radio-group-wrpr {
+  @apply flex items-center gap-[18px];
+  &.disable{
+    @apply pointer-events-none;
+    .radio-in-label{
+      @apply text-bms_gray_400;
+    }
+  }
+}
+.radio-btn-wrpr{
+  @apply opacity-0 absolute inset-0 w-full h-full z-0;
+  &[data-state="checked"] + .radio-title-wrpr {
+    @apply bg-bms_primary_800 text-white border-bms_primary_800;
+  }
+}
+/* .radio-in-wrpr:after {
+    content: '';
+    position: absolute;
+    top: auto;
+    left: 0px;
+    bottom: -3px;
+    right: 0;
+    width: 100%;
+    height: 80%;
+    background: #6d84a5;
+    z-index: 0;
+    border-radius: 10px;
+} */
+.radio-title-wrpr{
+  @apply relative z-10 flex items-center justify-center py-2 px-4 h-11 gap-4 rounded-lg text-bms_gray_500 bg-bms_gray_50 w-full flex-1 cursor-pointer shadow-[0_1px_4px_0_rgba(0,0,0,0.16)] transition;
+}
+.radio-row {
+  @apply flex-row items-center;
+}
+.radio-col {
+  @apply flex-col items-start;
+}
+.radio-in-wrpr {
+  @apply flex items-center h-12 relative w-full;
+}
+.radio-in-label {
+  @apply text-base md:text-sm font-normal text-inherit pb-0 cursor-pointer;
+}
+.radio-button {
+  @apply w-4 h-4 min-w-4 min-h-4 rounded-full border-2 border-solid border-bms_gray_400 flex items-center justify-center;
+}
+.radio-indicator {
+  @apply w-2.5 h-2.5 min-w-2.5 min-h-2.5 rounded-full bg-white inline-block;
+}
+.radio-button[data-state="checked"] {
+  .radio-indicator {
+    @apply bg-bms_primary_800;
+  }
+}
+/*************************       RADIO STYLE          **********************************/
+
+.bms-info {
+  @apply text-xs sm:text-sm text-bms_gray_500 font-medium text-center sm:text-left;
+}
+.img-fluid {
+  @apply w-full h-full max-h-screen object-cover;
+}
+.pet-info-wrpr{
+  @apply flex flex-col gap-6 w-full items-center;
+}
+.pet-details-card {
+  @apply flex gap-6 flex-col w-full;
+}
+.pet-label-icon{
+  @apply w-10 h-10 min-w-10 aspect-square bg-bms_gray_50 rounded-lg flex justify-center items-center;
+}
+.pet-label-icon svg{
+  @apply w-8 h-8 text-bms_orange_500
+}
+.pet-details-wrpr{
+  @apply flex gap-4 flex-col
+}
+.bmsBtn.textBtn.resend-btn {
+  @apply text-sm text-bms_gray_500 hover:text-bms_primary_800 underline font-semibold pl-1 disabled:text-bms_gray_700 disabled:cursor-not-allowed;
+}
+.bmsBtn.tertiaryBtn.send-code{
+  @apply w-full md:min-w-[106px] md:w-fit px-2 max-w-full h-11 whitespace-nowrap;
+}
+
+/******************    checkbox component     ********************/
+.bms-check-btn {
+  @apply border-2 border-solid border-bms_gray_800 rounded-[4px] w-[18px] h-[18px] min-w-[18px] min-h-[18px] flex items-center justify-center transition disabled:cursor-not-allowed;
+  &.gray{
+    @apply border-[#C1D0D7];
+  }
+}
+.bms-check-btn[data-state="checked"] {
+  @apply border-bms_primary_800 bg-bms_primary_800 text-white;
+}
+.bms-check-btn-wrpr {
+  @apply flex items-center cursor-pointer gap-1;
+}
+.bms-check-label {
+  @apply text-bms_gray_800 text-sm font-medium cursor-pointer select-none;
+}
+/******************    checkbox component     ********************/
+
+.otp-fields-wrpr {
+  @apply flex gap-2 items-center;
+}
+.otp-input-wrpr{
+  @apply bg-white overflow-hidden rounded-lg w-full max-w-11 min-w-8 h-auto max-h-11 aspect-square text-center text-lg focus:outline-none shadow-[0_2px_4px_0_rgba(0,0,0,0.25)] disabled:cursor-not-allowed disabled:bg-bms_gray_200 disabled:shadow-none transition;
+}
+.bms-input-label {
+  @apply text-bms_gray_800 text-base font-medium;
+}
+.bms-input-label-medium {
+  @apply font-medium;
+}
+.user-info-wrpr {
+  @apply flex flex-col gap-[18px] p-4 sm:p-6 rounded-[14px] border-[3px] border-bms_primary_200 bg-bms_primary_300 relative;
+  &.selected {
+    @apply border-bms_primary_400;
+    .remove-user-info {
+      @apply flex absolute right-6 top-12;
+    }
+  }
+  .bmsBtn {
+    @apply h-[18px];
+  }
+  .add-note {
+    @apply absolute right-0 bottom-0 text-bms_primary_400;
+  }
+  .remove-note {
+    @apply absolute right-0 bottom-0 text-bms_error_600;
+  }
+}
+.user-info-card {
+  @apply flex gap-4 sm:gap-6 justify-start items-center;
+}
+.user-type {
+  @apply min-w-10 min-h-10 max-w-10 max-h-10;
+}
+.user-info {
+  @apply flex flex-col gap-2;
+}
+.user-details-wrpr {
+  @apply flex items-end gap-2;
+}
+.user-name {
+  @apply text-bms_primary_100 text-base sm:text-xl/[110%] font-bold;
+}
+.user-details {
+  @apply text-bms_gray_800 text-xs/[140%] font-normal sm:font-medium;
+}
+.remove-user-info {
+  @apply hidden;
+}
+.contact-dropdown-wrpr {
+  @apply pl-0;
+  .bmsBtn {
+    @apply p-0 text-bms_gray_800 gap-0.5 disabled:cursor-default;
+  }
+  .bms-select-icon {
+    @apply w-5 h-5 min-h-5 min-w-5;
+  }
+}
+.contact-no-wrpr {
+  @apply w-full;
+}
+.contact-no-wrpr .f-in {
+  @apply pl-0;
+}
+.contact-dropdown {
+  @apply text-sm;
+}
+.country-dropdown-wrpr {
+  @apply absolute top-14 left-0 w-full py-1 focus:outline-none text-sm max-h-96;
+}
+.dd-search {
+  @apply flex items-center h-10 px-3 border-b border-solid border-bms_gray_200 gap-2;
+}
+.dd-search-in{
+  @apply focus-visible:outline-none;
+}
+.dd-search-list {
+  @apply overflow-auto max-h-72;
+}
+.generate-app-btn {
+  @apply flex justify-end;
+  .bmsBtn {
+    @apply text-sm;
+  }
+}
+.accordian-wrpr {
+  @apply flex flex-col gap-2;
+}
+.accordion-btn {
+  @apply flex justify-between w-full items-center bg-bms_gray_50 px-4 py-2.5 rounded-lg text-bms_gray_900 text-base font-medium;
+}
+.left-section-content.checkout-container {
+  @apply -mx-[30px] -mt-[30px] max-h-[calc(100%_-_46px)];
+  .footer {
+    @apply mx-0;
+  }
+}
+.order-summary {
+  @apply bg-bms_primary_100 px-[60px] py-10 flex flex-col gap-6;
+  .checkout-label {
+    @apply text-white;
+  }
+}
+.checkout-header {
+  @apply text-white text-[28px] font-medium;
+}
+.checkout-label {
+  @apply text-bms_gray_800 text-sm;
+}
+.order-description-wrpr {
+  @apply flex justify-between gap-4;
+}
+.order-description {
+  @apply flex gap-3;
+}
+.order-img-wrpr {
+  @apply min-w-10 min-h-10 max-w-10 max-h-10 p-2 rounded-md bg-bms_gray_200 flex items-center justify-center;
+}
+.address-form {
+  @apply px-4 sm:px-[60px];
+}
+.payment-form {
+  @apply px-4 sm:px-[60px];
+}
+.loader-wrpr {
+  @apply fixed w-screen h-screen inset-x-0 inset-y-0 flex items-center justify-center z-[999999];
+}
+.loader-overlay {
+  @apply absolute top-0 left-0 right-0 w-screen h-screen bg-bms_primary_500 opacity-80;
+}
+.loader-icon {
+  @apply w-8 h-8 animate-spin flex items-center justify-center;
+}
+
+.returning-client-wrpr{
+  @apply flex-1 flex flex-col items-start justify-between gap-6;
+}
+/****************            PopUP Styles         *****************/
+.popupTitle{
+  @apply text-lg md:text-xl text-bms_gray_800
+}
+.add-pet-footer{
+  @apply flex justify-center gap-3 w-full pb-4;
+}
+.popoverPara {
+  @apply text-bms_gray_800 text-sm md:text-base;
+}
+.popoverAppt {
+  @apply text-bms_gray_500 text-sm md:text-base/5 font-medium flex gap-0 md:gap-1 flex-col sm:flex-row;
+}
+
+.popoverDatePrev {
+  @apply text-bms_gray_800 font-semibold line-through;
+}
+
+.popoverDateNew {
+  @apply text-bms_gray_800 font-semibold;
+}
+.inter-font {
+  font-family: 'Inter', sans-serif;
+}
+
+
+
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+  background: #eee;
+  border-radius: 8px;
+}
+
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 1.2s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+
+
+
+.uvc-tabs-wrpr {
+  @apply pb-8;
+}
+.uvc-tab-list {
+  @apply flex gap-6;
+}
+.uvc-tab-btn {
+  @apply text-bms_gray_500 font-medium relative gap-3 flex items-center text-sm hover:text-bms_primary_600 hover:after:content-[''] hover:after:-bottom-3 hover:after:flex hover:after:bg-bms_gray_400 hover:after:w-full hover:after:h-0.5 hover:after:absolute transition;
+}
+.uvc-tab-btn .sidebar-list-count {
+  @apply bg-bms_gray_200 rounded text-bms_gray_500 py-0.5 px-1.5;
+}
+.uvc-tab-btn.active .sidebar-list-count {
+  @apply bg-bms_primary_100 rounded text-bms_primary_700 py-0.5 px-1.5;
+}
+.uvc-tab-btn.active {
+  @apply text-bms_primary_700 transition after:content-[''] after:-bottom-3 after:flex after:bg-bms_primary_700 after:w-full after:h-0.5 after:absolute;
+}
+.additional-info .hyper-link {
+  @apply underline;
+}
+.additional-info .bms-check-label.text {
+  @apply cursor-default;
+}
+.cal-wrpr{
+  @apply flex flex-col gap-4 w-full;
+}
+.slots-wrpr{
+  @apply flex flex-col gap-6 w-full lg:w-1/2 overflow-auto overscroll-contain max-h-full lg:pb-1;
+}
+
+.number-input-wrpr{
+  @apply bg-bms_gray_50 rounded-lg p-4 flex flex-col gap-3 shadow-[0_1px_4px_0_rgba(0,0,0,0.16)];
+  &.edit-pet{
+    @apply bg-white;
+  }
+}
+.verification-wrpr{
+  @apply flex items-center gap-2;
+  .bmsLabel{
+    @apply font-semibold;
+  }
+}
+.verification-icon-wrpr{
+  @apply bg-white flex items-center justify-center w-10 h-10 min-w-10 min-h-10 rounded-lg;
+}
+.verification-icon{
+  @apply text-bms_orange_500;
+}
+.otp-verification-wrpr{
+  @apply flex flex-col gap-1.5 pt-3;
+}
+.break-line{
+  @apply h-[1px] w-full bg-bms_gray_500 opacity-20 inline-block;
+}
+.hide-mbl{
+  @apply hidden md:flex;
+}
+.hide-desktop{
+  @apply flex md:hidden;
+}
+@media screen and (max-width: 350px) {
+  .cal-header{
+    @apply flex-col;
+  }
+}
+.phone-number .f-wrpr, .phone-number .f-wrpr .f-in{
+  @apply bg-white disabled:bg-bms_gray_200;
+}
+.phone-number .f-wrpr:has(.f-in:disabled) {
+  @apply bg-bms_gray_200;
+}
+.add-another-pet-btn .buttonIcon{
+  @apply hidden md:inline-block;
+}
